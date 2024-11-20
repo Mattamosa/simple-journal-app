@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1732082545481,
+    "title": "Journay Entry #1",
+    "date": "2024-11-27",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "category": "personal",
+    "isFavorite": true,
+    "tags": [],
+    "archived": false,
+    "history": []
+  },
+  {
+    "id": 1732082592609,
+    "title": "Journay Entry #2",
+    "date": "2024-11-27",
+    "content": "Lorem ipsum odor amet, consectetuer adipiscing elit. Senectus a nisi mauris pellentesque habitasse ridiculus ac. Vel id in dui ac convallis sed. Vestibulum volutpat luctus egestas mus consectetur blandit diam. Pretium donec est facilisi; consectetur rhoncus erat facilisi elementum congue. Dignissim luctus risus id commodo risus. Aliquet eros nunc efficitur facilisi erat leo. Posuere venenatis faucibus efficitur ridiculus litora. Donec conubia amet dis conubia ornare nisl erat!\n\nBlandit mus euismod quisque ex eros. Lacinia blandit penatibus convallis diam blandit aenean proin. Maximus sed habitasse lectus diam venenatis turpis arcu. Auctor efficitur himenaeos eros feugiat donec. Diam hac quisque magnis habitant convallis urna. Viverra elit magna nunc porta hac hendrerit luctus cursus rhoncus? Diam iaculis faucibus litora curae himenaeos ac diam turpis. Enim auctor accumsan aliquet eleifend semper rutrum suspendisse sit egestas.\n\nRisus curae penatibus vehicula fermentum nibh. Purus donec bibendum vestibulum potenti aenean. Gravida nisi eu eleifend aptent id ullamcorper. In vestibulum eros consequat dictum cubilia maximus. Rhoncus ac curabitur pellentesque platea cubilia blandit porttitor. Aliquet dictumst nec ridiculus porta tortor condimentum libero.\n\nNunc tincidunt finibus praesent placerat imperdiet potenti justo. Maximus dictum venenatis etiam fames scelerisque nunc sem. In varius finibus mollis ex ac feugiat. Amauris id; turpis adipiscing luctus aliquam hac. Hac accumsan sollicitudin nec suspendisse non. Interdum nisi inceptos phasellus lacinia vel aptent vestibulum. Suscipit sagittis lobortis turpis vel habitant. Congue felis quam taciti; orci consequat ex tortor. Malesuada quisque hac montes volutpat orci massa cras dolor iaculis. Augue sodales erat mattis tincidunt praesent montes.\n\nPrimis sagittis nulla; per sit sem erat ligula penatibus. Tincidunt nam etiam pharetra odio scelerisque nisl. Vitae pellentesque tempus amet curae nunc varius. Risus taciti tempor scelerisque vehicula aenean mollis nisl nascetur. Sagittis rhoncus maecenas bibendum sem enim maecenas ligula nibh. Rutrum fusce hendrerit laoreet suspendisse accumsan risus ultricies. Varius dictum sollicitudin velit dis nec aptent nec. Aliquam magnis penatibus lacus potenti dictum est. Donec leo tempor pellentesque vitae convallis auctor.",
+    "category": "work",
+    "isFavorite": false,
+    "tags": [],
+    "archived": false,
+    "history": []
+  }
+]

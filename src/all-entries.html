@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>All Entries - Simple Journal App</title>
+</head>
+<body class="p-4 m-10 border-2 border-black rounded-xl bg-gray-100">
+    <h1 class="text-5xl text-white bg-green-600 font-semibold p-4 m-10 rounded-xl border-2 border-black text-center">
+      All Entries
+    </h1>
+    <!-- Search, Filter, and Sort Options -->
+    <div class="options flex justify-between items-center mb-8">
+        <input type="text" id="search" placeholder="Search by title or date" class="p-2 border rounded-md">
+        <div class="flex space-x-4">
+            <select id="filter" class="p-2 border rounded-md">
+                <option value="all">All</option>
+                <option value="favorites">Favorites</option>
+                <option value="archived">Archived</option>
+            </select>
+            <select id="sort" class="p-2 border rounded-md">
+                <option value="date">Sort by Date</option>
+                <option value="title">Sort by Title</option>
+            </select>
+        </div>
+    </div>
+    <div id="entries" class="entries mt-8"></div>
+    <script src="./script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchEntries('all');
+        });
+    </script>
+</body>
+</html>
