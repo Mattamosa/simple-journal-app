@@ -34,13 +34,13 @@ const findEntryById = (id) => {
 
 // Create New Journal Entry
 app.post('/api/entries', (req, res) => {
-    const { title, date, content, category } = req.body;
-    console.log('Received new entry:', { title, date, content, category }); // Log the received data
-    if (!title || !date || !content || !category) {
+    const { title, date, content, category, mood, tags } = req.body;
+    console.log('Received new entry:', { title, date, content, category, mood, tags }); // Log the received data
+    if (!title || !date || !content || !category || !mood || !tags) {
         console.log('Missing required fields');
         return res.status(400).json({ error: 'Missing required fields' });
     }
-    const newEntry = { id: Date.now(), title, date, content, category, isFavorite: false, tags: [], archived: false, history: [] };
+    const newEntry = { id: Date.now(), title, date, content, category, mood, tags, isFavorite: false, archived: false, history: [] };
     const entries = readEntries();
     entries.push(newEntry);
     writeEntries(entries);
@@ -51,14 +51,16 @@ app.post('/api/entries', (req, res) => {
 // Update Entry
 app.put('/api/entries/:id', (req, res) => {
     const { id } = req.params;
-    const { title, content, category } = req.body;
+    const { title, content, category, mood, tags } = req.body;
     const entries = readEntries();
     const entry = entries.find(entry => entry.id == id);
     if (entry) {
-        entry.history.push({ updatedAt: new Date(), title: entry.title, content: entry.content, category: entry.category });
+        entry.history.push({ updatedAt: new Date(), title: entry.title, content: entry.content, category: entry.category, mood: entry.mood, tags: entry.tags });
         entry.title = title || entry.title;
         entry.content = content || entry.content;
         entry.category = category || entry.category;
+        entry.mood = mood || entry.mood;
+        entry.tags = tags || entry.tags;
         writeEntries(entries);
         res.json(entry);
     } else {
@@ -70,11 +72,11 @@ app.put('/api/entries/:id', (req, res) => {
 app.delete('/api/entries/:id', (req, res) => {
     const { id } = req.params;
     let entries = readEntries();
-    const entryIndex = entries.findIndex(entry => entry.id == id);
-    if (entryIndex !== -1) {
-        entries.splice(entryIndex, 1);
+    const entry = entries.find(entry => entry.id == id);
+    if (entry) {
+        entry.archived = true;
         writeEntries(entries);
-        res.json({ message: 'Entry deleted' });
+        res.json({ message: 'Entry archived' });
     } else {
         res.status(404).json({ error: 'Entry not found' });
     }
@@ -98,15 +100,27 @@ app.patch('/api/entries/:id/favorite', (req, res) => {
 // Fetch Analytics
 app.get('/api/analytics', (req, res) => {
     const entries = readEntries();
-    const totalEntries = entries.length;
+    const totalEntries = entries.filter(entry => !entry.archived).length; // Exclude archived entries
     const favoriteCount = entries.filter(entry => entry.isFavorite).length;
-    res.json({ totalEntries, favoriteCount });
+    const archivedCount = entries.filter(entry => entry.archived).length;
+    res.json({ totalEntries, favoriteCount, archivedCount });
 });
 
 // Fetch Entries
 app.get('/api/entries', (req, res) => {
     const entries = readEntries();
     res.json(entries);
+});
+
+// Fetch Single Entry
+app.get('/api/entries/:id', (req, res) => {
+    const { id } = req.params;
+    const entry = findEntryById(id);
+    if (entry) {
+        res.json(entry);
+    } else {
+        res.status(404).json({ error: 'Entry not found' });
+    }
 });
 
 // Catch-all route to serve index.html

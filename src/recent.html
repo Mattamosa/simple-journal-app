@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./output.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
     <title>Recent Entries - Simple Journal App</title>
-</head>
-<body class="p-4 m-10 border-2 border-black rounded-xl bg-gray-100">
-    <h1 class="text-5xl text-white bg-green-600 font-semibold p-4 m-10 rounded-xl border-2 border-black text-center">
+  </head>
+  <body class="p-4 m-10 border-2 border-black rounded-xl bg-gray-100">
+    <h1
+      class="text-5xl text-white bg-green-600 font-semibold p-4 m-10 rounded-xl border-2 border-black text-center"
+    >
       Recent Entries
     </h1>
     <div id="entries" class="entries mt-8"></div>
     <script src="./script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchEntries('recent');
-        });
+      document.addEventListener("DOMContentLoaded", () => {
+        fetchEntries("recent");
+      });
     </script>
-</body>
+  </body>
 </html>
