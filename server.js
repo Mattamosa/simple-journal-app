@@ -55,12 +55,13 @@ app.put('/api/entries/:id', (req, res) => {
     const entries = readEntries();
     const entry = entries.find(entry => entry.id == id);
     if (entry) {
-        entry.history.push({ updatedAt: new Date(), title: entry.title, content: entry.content, category: entry.category, mood: entry.mood, tags: entry.tags });
+        entry.history.push({ updatedAt: new Date(), title, content, category, mood, tags }); // Push the new state to history
         entry.title = title || entry.title;
         entry.content = content || entry.content;
         entry.category = category || entry.category;
         entry.mood = mood || entry.mood;
         entry.tags = tags || entry.tags;
+        entry.history.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)); // Sort history from newest to oldest
         writeEntries(entries);
         res.json(entry);
     } else {
@@ -75,6 +76,9 @@ app.delete('/api/entries/:id', (req, res) => {
     const entry = entries.find(entry => entry.id == id);
     if (entry) {
         entry.archived = true;
+        if (entry.isFavorite) {
+            entry.isFavorite = false; // Remove favorite status if the entry is archived
+        }
         writeEntries(entries);
         res.json({ message: 'Entry archived' });
     } else {
@@ -88,9 +92,12 @@ app.patch('/api/entries/:id/favorite', (req, res) => {
     const entries = readEntries();
     const entry = entries.find(entry => entry.id == id);
     if (entry) {
+        if (entry.archived) {
+            return res.status(400).json({ error: 'Archived entries cannot be marked as favorite' });
+        }
         entry.isFavorite = !entry.isFavorite;
         writeEntries(entries);
-        console.log('Updated entry:', entry); // Log the updated entry
+        console.log('Updated entry:', entry); // updated entry
         res.json(entry);
     } else {
         res.status(404).json({ error: 'Entry not found' });
@@ -101,7 +108,7 @@ app.patch('/api/entries/:id/favorite', (req, res) => {
 app.get('/api/analytics', (req, res) => {
     const entries = readEntries();
     const totalEntries = entries.filter(entry => !entry.archived).length; // Exclude archived entries
-    const favoriteCount = entries.filter(entry => entry.isFavorite).length;
+    const favoriteCount = entries.filter(entry => entry.isFavorite && !entry.archived).length; // Exclude archived entries from favorite count
     const archivedCount = entries.filter(entry => entry.archived).length;
     res.json({ totalEntries, favoriteCount, archivedCount });
 });

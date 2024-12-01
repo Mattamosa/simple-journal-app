@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
+    <script src="./script.js"></script>
     <title>All Entries - Simple Journal App</title>
   </head>
   <body class="p-4 m-10 border-2 border-black rounded-xl bg-gray-100">
@@ -33,11 +34,11 @@
       </div>
     </div>
     <div id="entries" class="entries mt-8"></div>
-    <script src="./script.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         fetchEntries("all");
       });
     </script>
+    <script src="./script.js"></script>
   </body>
 </html>
