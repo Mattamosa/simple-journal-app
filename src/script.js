@@ -372,7 +372,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (response.ok) {
         console.log('Archived entries deleted:', result.message);
         alert('All archived entries have been successfully deleted!');
-        fetchEntries("all"); // Refresh the displayed entries
+        const currentPage = window.location.pathname.split("/").pop();
+        if (currentPage === "all-entries.html") {
+          fetchEntries("archived"); // Refresh the displayed entries with the archived filter
+        } else {
+          fetchEntries("all"); // Refresh the displayed entries
+        }
         fetchAnalytics(); // Update analytics
       } else {
         console.error('Error deleting archived entries:', result.error);

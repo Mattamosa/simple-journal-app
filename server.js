@@ -50,6 +50,7 @@ app.delete('/api/entries/:id', (req, res) => {
     const entry = entries.find(entry => entry.id == id);
     if (entry) {
         entry.archived = true;
+        entry.isFavorite = false; // Ensure archived entries cannot be favorites
         res.json({ message: 'Entry archived', entry });
     } else {
         res.status(404).json({ error: 'Entry not found' });
