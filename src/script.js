@@ -336,11 +336,15 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAnalytics();
   };
 
-  // Delete entry
+  // Archive entry instead of deleting
   window.deleteEntry = async (id) => {
-    console.log(`Deleting entry with ID: ${id}`);
+    console.log(`Archiving entry with ID: ${id}`);
     const response = await fetchData(`/api/entries/${id}`, "DELETE");
-    console.log("Response from server:", response); // Log the response from the server
+    if (response.error) {
+      alert(response.error);
+      return;
+    }
+    console.log("Entry archived successfully:", response);
     const currentPage = window.location.pathname.split("/").pop();
     if (currentPage === "favorites.html") {
       fetchEntries("favorites");
@@ -352,6 +356,32 @@ document.addEventListener("DOMContentLoaded", () => {
       fetchEntries();
     }
     fetchAnalytics();
+  };
+
+  // Function to empty the archive
+  window.emptyArchive = async () => {
+    try {
+      const response = await fetch('/api/archived', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const result = await response.json();
+  
+      if (response.ok) {
+        console.log('Archived entries deleted:', result.message);
+        alert('All archived entries have been successfully deleted!');
+        fetchEntries("all"); // Refresh the displayed entries
+        fetchAnalytics(); // Update analytics
+      } else {
+        console.error('Error deleting archived entries:', result.error);
+        alert('Failed to delete archived entries.');
+      }
+    } catch (error) {
+      console.error('Request failed:', error);
+      alert('Failed to delete archived entries.');
+    }
   };
 
   // Handle search, filter, and sort
@@ -390,10 +420,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     searchInput.addEventListener("input", handleSearchFilterSort);
-    filterSelect.addEventListener("change", () => {
-      localStorage.setItem("selectedFilter", filterSelect.value);
-      handleSearchFilterSort();
-    });
+    filterSelect.addEventListener("change", handleSearchFilterSort);
     sortSelect.addEventListener("change", handleSearchFilterSort);
   }
 
@@ -401,13 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (fontSizeSelect) {
     fontSizeSelect.addEventListener("change", () => {
       document.body.style.fontSize = fontSizeSelect.value;
-      localStorage.setItem("fontSize", fontSizeSelect.value);
     });
-    const savedFontSize = localStorage.getItem("fontSize");
-    if (savedFontSize) {
-      document.body.style.fontSize = savedFontSize;
-      fontSizeSelect.value = savedFontSize;
-    }
   }
 
   fetchAnalytics();

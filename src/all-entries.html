@@ -31,12 +31,19 @@
           <option value="date">Sort by Date</option>
           <option value="title">Sort by Title</option>
         </select>
+        <button
+          id="empty-archive"
+          class="p-2 bg-red-600 text-white rounded-md"
+        >
+          Empty Archive
+        </button>
       </div>
     </div>
     <div id="entries" class="entries mt-8"></div>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         fetchEntries("all");
+        document.getElementById("empty-archive").addEventListener("click", emptyArchive);
       });
     </script>
     <script src="./script.js"></script>
