@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Fetch analytics from the server
   window.fetchAnalytics = async () => {
     if (totalEntriesSpan && favoriteCountSpan && archivedCountSpan) {
-      // Update this line
       const data = await fetchData("/api/analytics");
       totalEntriesSpan.textContent = data.totalEntries;
       favoriteCountSpan.textContent = data.favoriteCount;
@@ -235,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       fetchEntries();
     }
-    fetchAnalytics();
+    fetchAnalytics(); // Update analytics after editing an entry
   };
 
   // Edit entry
@@ -313,7 +312,10 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   if (newEntryForm) {
-    newEntryForm.addEventListener("submit", handleNewEntrySubmit);
+    newEntryForm.addEventListener("submit", async (e) => {
+      await handleNewEntrySubmit(e);
+      fetchAnalytics(); // Update analytics after adding a new entry
+    });
   }
 
   // Toggle favorite status
@@ -333,7 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       fetchEntries();
     }
-    fetchAnalytics();
+    fetchAnalytics(); // Update analytics after toggling favorite status
   };
 
   // Archive entry instead of deleting
@@ -355,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       fetchEntries();
     }
-    fetchAnalytics();
+    fetchAnalytics(); // Update analytics after archiving an entry
   };
 
   // Function to empty the archive
