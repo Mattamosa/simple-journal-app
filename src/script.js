@@ -79,15 +79,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p class="text-gray-600 mb-4">Tags: ${entry.tags.join(
                           ", "
                         )}</p>
-                        <button class="border-2 bg-blue-500 text-white p-2 rounded-full" onclick="toggleFavorite(${
+                        <button class="border-2 bg-blue-500 text-white p-2 rounded-md" onclick="toggleFavorite(${
                           entry.id
                         })">${
           entry.isFavorite ? "Unfavorite" : "Favorite"
         }</button>
-                        <button class="border-2 bg-red-500 text-white p-2 rounded-full ml-2" onclick="deleteEntry(${
+                        <button class="border-2 bg-red-500 text-white p-2 rounded-md ml-2" onclick="deleteEntry(${
                           entry.id
                         })">Delete</button>
-                        <button class="border-2 bg-yellow-500 text-white p-2 rounded-full ml-2" onclick="showEditForm(${
+                        <button class="border-2 bg-yellow-500 text-white p-2 rounded-md ml-2" onclick="showEditForm(${
                           entry.id
                         })">Edit</button>
                         <div class="history mt-4">
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <button type="button" class="w-full bg-green-600 text-white p-2 rounded-md" onclick="submitEditForm(${
                           entry.id
                         })">Save</button>
-                        <button type="button" class="w-full bg-gray-600 text-white p-2 rounded-md" onclick="hideEditForm(${
+                        <button type="button" class="w-full bg-rose-500 text-white p-2 rounded-md" onclick="hideEditForm(${
                           entry.id
                         })">Cancel</button>
                     </form>
