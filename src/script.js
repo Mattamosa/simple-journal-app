@@ -49,15 +49,50 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Fetch analytics from the server
+
+  // Function to fetch analytics from the server
   window.fetchAnalytics = async () => {
     if (totalEntriesSpan && favoriteCountSpan && archivedCountSpan) {
-      const data = await fetchData("/api/analytics");
-      totalEntriesSpan.textContent = data.totalEntries;
-      favoriteCountSpan.textContent = data.favoriteCount;
-      archivedCountSpan.textContent = data.archivedCount;
+      try {
+        const data = await fetchData("/api/analytics");
+        totalEntriesSpan.textContent = data.totalEntries;
+        favoriteCountSpan.textContent = data.favoriteCount;
+        archivedCountSpan.textContent = data.archivedCount;
+        console.log("Analytics fetched successfully:", data);
+      } catch (error) {
+        console.error("Error fetching analytics:", error);
+      }
     }
   };
+
+  // Function to determine if the current page is index.html
+  const isIndexPage = () =>
+    window.location.pathname === '/' || window.location.pathname.endsWith('index.html');
+
+  // Fetch analytics when the page is loaded or shown
+  const handlePageLoadOrShow = () => {
+    if (isIndexPage()) {
+      console.log("Landing on index.html. Fetching analytics.");
+      fetchAnalytics();
+    }
+  };
+
+  // Trigger analytics fetch on initial load
+  document.addEventListener('DOMContentLoaded', handlePageLoadOrShow);
+
+  // Trigger analytics fetch on page show (e.g., back/forward navigation)
+  window.addEventListener('pageshow', handlePageLoadOrShow);
+
+  // // Fetch analytics from the server
+  // window.fetchAnalytics = async () => {
+  //   if (totalEntriesSpan && favoriteCountSpan && archivedCountSpan) {
+  //     const data = await fetchData("/api/analytics");
+  //     totalEntriesSpan.textContent = data.totalEntries;
+  //     favoriteCountSpan.textContent = data.favoriteCount;
+  //     archivedCountSpan.textContent = data.archivedCount;
+  //     fetchAnalytics(); <-- *Recursion Nightmare*
+  //   }
+  // };
 
   // Display entries
   const displayEntries = (entries) => {

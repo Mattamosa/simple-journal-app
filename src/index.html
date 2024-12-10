@@ -184,6 +184,16 @@
       document.addEventListener("DOMContentLoaded", () => {
         fetchAnalytics(); // Ensure analytics are fetched on page load
       });
+
+      function adjustFontSize(action) {
+        const content = document.getElementById('content');
+        const currentSize = parseFloat(window.getComputedStyle(content, null).getPropertyValue('font-size'));
+        if (action === 'increase') {
+          content.style.fontSize = (currentSize + 2) + 'px';
+        } else if (action === 'decrease') {
+          content.style.fontSize = (currentSize - 2) + 'px';
+        }
+      }
     </script>
   </body>
 </html>
