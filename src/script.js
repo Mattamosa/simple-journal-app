@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
                               entry.mood === "sad" ? "selected" : ""
                             }>Sad</option>
                         </select>
-                        <input type="text" id="edit-tags-${
+                        <input type="text" placeholder="Tags" id="edit-tags-${
                           entry.id
                         }" value="${entry.tags.join(
           ", "
@@ -498,3 +498,14 @@ document.onkeydown = function(event) {
     }
 };
 });
+
+
+function adjustFontSize(action) {
+  const content = document.getElementById('content');
+  const currentSize = parseFloat(window.getComputedStyle(content, null).getPropertyValue('font-size'));
+  if (action === 'increase') {
+    content.style.fontSize = (currentSize + 2) + 'px';
+  } else if (action === 'decrease') {
+    content.style.fontSize = (currentSize - 2) + 'px';
+  }
+}
