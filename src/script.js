@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
       entries.forEach((entry) => {
         const entryDiv = document.createElement("div");
         entryDiv.className =
-          "entry p-4 m-4 bg-white rounded-lg shadow-lg border border-gray-200 bg-red-300 rounded-xl"; // Journal entry div styling
+          "entry p-4 m-4 bg-white rounded-lg shadow-lg border border-gray-200 rounded-xl"; // Journal entry div styling
         entryDiv.innerHTML = `
                     <div id="entry-view-${entry.id}">
                         <h3 class="text-2xl font-bold mb-2">${entry.title}</h3>
@@ -79,17 +79,18 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p class="text-gray-600 mb-4">Tags: ${entry.tags.join(
                           ", "
                         )}</p>
-                        <button class="border-2 bg-blue-500 text-white p-2 rounded-md" onclick="toggleFavorite(${
+                        <button class="border-2 bg-blue-500 text-white p-2 rounded-md px-6" onclick="toggleFavorite(${
                           entry.id
                         })">${
           entry.isFavorite ? "Unfavorite" : "Favorite"
         }</button>
-                        <button class="border-2 bg-red-500 text-white p-2 rounded-md ml-2" onclick="deleteEntry(${
-                          entry.id
-                        })">Delete</button>
-                        <button class="border-2 bg-yellow-500 text-white p-2 rounded-md ml-2" onclick="showEditForm(${
+                        
+                        <button class="border-2 bg-yellow-500 text-white p-2 rounded-md ml-1 px-6" onclick="showEditForm(${
                           entry.id
                         })">Edit</button>
+                        <button class="border-2 bg-red-500 text-white p-2 rounded-md ml-1 px-6" onclick="deleteEntry(${
+                          entry.id
+                        })">Delete</button>
                         <div class="history mt-4">
                             <h4 class="text-xl font-bold mb-2">Edit History</h4>
                             <ul>
