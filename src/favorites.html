@@ -4,14 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Favorites - Simple Journal App</title>
   </head>
   <body class="p-4 m-10 border-2 border-black rounded-xl bg-gray-100">
+    
+    <div class="flex justify-center text-5xl text-white bg-green-500 font-semibold p-4 m-4 rounded-xl border-2 border-black text-center">
+
+      <a href="index.html">
+        <img src="./img/back-square.svg" class="h-12 w-12 mx-2" alt="Back" title="Back"/>
+      </a>
+      <h1>Favorite Entries</h1>
+
+    </div>
+    
+    <!-- <div href="#">
+      <a href="index.html">
+        <img src="./img/back-square.svg" class="me-0 h-6 sm:h-9" alt="Back" />
+      </a>
+      <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"></span>
+    
     <h1
-      class="text-5xl text-white bg-green-600 font-semibold p-4 m-10 rounded-xl border-2 border-black text-center"
+      class="text-5xl text-white bg-green-500 font-semibold p-4 m-4 rounded-xl border-2 border-black text-center"
     >
       Favorite Entries
     </h1>
+  </div> -->
     <div id="entries" class="entries mt-8"></div>
     <script src="./script.js"></script>
     <script>

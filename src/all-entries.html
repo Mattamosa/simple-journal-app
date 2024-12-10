@@ -10,25 +10,25 @@
   </head>
   <body class="p-4 m-10 border-2 border-black rounded-xl bg-gray-100">
     <h1
-      class="text-5xl text-white bg-green-600 font-semibold p-4 m-10 rounded-xl border-2 border-black text-center"
+      class="text-5xl text-white bg-green-500 font-semibold p-4 m-4 rounded-xl border-2 border-black text-center"
     >
       All Entries
     </h1>
     <!-- Search, Filter, and Sort Options -->
-    <div class="options flex justify-between items-center mb-8">
+    <div class="options flex justify-center items-center mb-8">
       <input
         type="text"
         id="search"
         placeholder="Search by title or date"
-        class="p-2 border rounded-md"
+        class="p-1.5 border-2 border-green-600 shadow-md rounded-md mr-4"
       />
       <div class="flex space-x-4">
-        <select id="filter" class="p-2 border rounded-md">
+        <select id="filter" class="p-2 border-2 border-green-600 shadow-md rounded-md bg-white text-center">
           <option value="all">All</option>
           <option value="favorites">Favorites</option>
           <option value="archived">Archived</option>
         </select>
-        <select id="sort" class="p-2 border rounded-md">
+        <select id="sort" class="p-2 border-2 border-green-600 shadow-md rounded-md bg-white text-center">
           <option value="date">Sort by Date</option>
           <option value="title">Sort by Title</option>
         </select>
@@ -41,7 +41,7 @@
         </button> -->
 
         <!-- Empty Archive Modal Start -->
-        <button class="bg-rose-500 text-white rounded-md px-4 py-2 hover:bg-rose-700 transition" onclick="openModal('modelConfirm')">
+        <button class="bg-rose-500 text-white rounded-md px-3 py-2 hover:bg-rose-700 transition" onclick="openModal('modelConfirm')">
           Empty Archive
        </button>
        
